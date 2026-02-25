@@ -217,7 +217,7 @@ export const ExpenseTracker: React.FC<ExpenseTrackerProps> = ({ state, onSave, o
                     <input 
                       type="number" 
                       className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:ring-2 focus:ring-black outline-none"
-                      value={newIncome.amount}
+                      value={Number.isNaN(newIncome.amount) ? '' : newIncome.amount}
                       onChange={e => setNewIncome({...newIncome, amount: parseFloat(e.target.value)})}
                     />
                   </div>
@@ -290,7 +290,7 @@ export const ExpenseTracker: React.FC<ExpenseTrackerProps> = ({ state, onSave, o
                 <input 
                   type="number" 
                   className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:ring-2 focus:ring-black outline-none"
-                  value={newExp.amount}
+                  value={Number.isNaN(newExp.amount) ? '' : newExp.amount}
                   onChange={e => setNewExp({...newExp, amount: parseFloat(e.target.value)})}
                 />
               </div>

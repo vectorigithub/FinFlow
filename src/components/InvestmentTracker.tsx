@@ -117,7 +117,7 @@ export const InvestmentTracker: React.FC<InvestmentTrackerProps> = ({ state, onS
                   <input 
                     type="number" 
                     className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:ring-2 focus:ring-black outline-none"
-                    value={newInv.amount}
+                    value={Number.isNaN(newInv.amount) ? '' : newInv.amount}
                     onChange={e => setNewInv({...newInv, amount: parseFloat(e.target.value)})}
                   />
                 </div>
@@ -126,7 +126,7 @@ export const InvestmentTracker: React.FC<InvestmentTrackerProps> = ({ state, onS
                   <input 
                     type="number" 
                     className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:ring-2 focus:ring-black outline-none"
-                    value={newInv.expectedReturn}
+                    value={Number.isNaN(newInv.expectedReturn) ? '' : newInv.expectedReturn}
                     onChange={e => setNewInv({...newInv, expectedReturn: parseFloat(e.target.value)})}
                   />
                 </div>

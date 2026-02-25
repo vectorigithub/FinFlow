@@ -147,7 +147,7 @@ export default function App() {
             <div className="p-4 bg-slate-50 rounded-2xl">
               <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Net Worth</p>
               <p className="text-lg font-bold">
-                ${(Number(state.investments.reduce((a, b) => a + (b.amount || 0), 0)) - Number(state.debts.reduce((a, b) => a + (b.amount || 0), 0))).toLocaleString()}
+                ${(state.investments.reduce((a, b) => a + (Number(b.amount) || 0), 0) - state.debts.reduce((a, b) => a + (Number(b.amount) || 0), 0)).toLocaleString()}
               </p>
             </div>
           </div>

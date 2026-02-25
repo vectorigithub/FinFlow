@@ -168,7 +168,7 @@ export const DebtManager: React.FC<DebtManagerProps> = ({ state, onSave, onDelet
                   <input 
                     type="number" 
                     className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:ring-2 focus:ring-black outline-none"
-                    value={newDebt.amount}
+                    value={Number.isNaN(newDebt.amount) ? '' : newDebt.amount}
                     onChange={e => setNewDebt({...newDebt, amount: parseFloat(e.target.value)})}
                   />
                 </div>
@@ -177,7 +177,7 @@ export const DebtManager: React.FC<DebtManagerProps> = ({ state, onSave, onDelet
                   <input 
                     type="number" 
                     className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:ring-2 focus:ring-black outline-none"
-                    value={newDebt.interestRate}
+                    value={Number.isNaN(newDebt.interestRate) ? '' : newDebt.interestRate}
                     onChange={e => setNewDebt({...newDebt, interestRate: parseFloat(e.target.value)})}
                   />
                 </div>

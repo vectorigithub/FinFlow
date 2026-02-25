@@ -80,10 +80,13 @@ export const Reports: React.FC<ReportsProps> = ({ state }) => {
     return acc;
   }, {});
 
-  const pieData = Object.keys(expenseByCategory).map(cat => ({
-    name: cat,
-    value: expenseByCategory[cat]
-  }));
+  const totalExpenseValue = Object.values(expenseByCategory).reduce((a: any, b: any) => a + b, 0) as number;
+  const pieData = totalExpenseValue > 0 
+    ? Object.keys(expenseByCategory).map(cat => ({
+        name: cat,
+        value: expenseByCategory[cat]
+      }))
+    : [{ name: 'No Expenses', value: 1 }];
 
   const COLORS = ['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'];
 
@@ -202,7 +205,7 @@ export const Reports: React.FC<ReportsProps> = ({ state }) => {
           <div className="space-y-4">
             <p className="text-sm font-bold text-slate-400 uppercase tracking-wider">Expense Metrics</p>
             <div className="space-y-2">
-              <MetricRow label="Savings Rate" value={`${(((Number(totalMonthlyIncome) || 0 - Number(totalExpenses) || 0) / (Number(totalMonthlyIncome) || 1)) * 100).toFixed(1)}%`} />
+              <MetricRow label="Savings Rate" value={`${((((Number(totalMonthlyIncome) || 0) - (Number(totalExpenses) || 0)) / (Number(totalMonthlyIncome) || 1)) * 100).toFixed(1)}%`} />
               <MetricRow label="Recurring %" value={`${((state.expenses.filter(e => e.isRecurring).length / (state.expenses.length || 1)) * 100).toFixed(1)}%`} />
             </div>
           </div>
